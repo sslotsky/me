@@ -1,7 +1,14 @@
+import { styled } from "linaria/react";
 import { Link } from "gatsby";
 import React from "react";
 
 import me from "../images/me.jpg";
+
+const Logo = styled.img`
+  margin-bottom: 0;
+  height: 3rem;
+  border-radius: 3rem;
+`;
 
 const Header = () => {
   return (
@@ -25,11 +32,7 @@ const Header = () => {
             display: "flex",
           }}
         >
-          <img
-            src={me}
-            alt="Me"
-            style={{ marginBottom: 0, height: "3rem", borderRadius: "3rem" }}
-          />
+          <Logo src={me} />
         </Link>
       </div>
     </header>
