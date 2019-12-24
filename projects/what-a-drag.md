@@ -2,9 +2,6 @@
 title: What a Drag
 image: /assets/what-a-drag.png
 description: >-
-  # What a Drag!
-
-
   Try out the different effects and play with the color slider. It’s strangely
   addictive and calming, which makes for a nice break from Twitter.Try out the
   different effects and play with the color slider. It’s strangely addictive and
