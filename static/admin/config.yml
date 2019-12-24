@@ -1,0 +1,16 @@
+backend:
+  name: github
+  repo: sslotsky/me
+
+media_folder: static/assets
+public_folder: assets
+
+collections:
+  - name: projects
+    label: Projects
+    folder: projects
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: image, label: Image, widget: image }
+      - { name: description, label: Description, widget: markdown }
