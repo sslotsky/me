@@ -17,7 +17,7 @@ interface SEOProps {
 }
 
 function SEO({
-  description,
+  description = "",
   lang = "en",
   meta = [],
   title,
