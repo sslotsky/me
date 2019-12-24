@@ -11,6 +11,6 @@ description: >-
   calming, which makes for a nice break from Twitter.
 
 
-  [what-a-drag.saxyfool.dev](https://what-a-drag.saxyfool.dev/https://what-a-drag.saxyfool.dev/)
+  [what-a-drag.saxyfool.dev](https://what-a-drag.saxyfool.dev)
 ---
 
