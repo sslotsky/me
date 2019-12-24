@@ -20,6 +20,31 @@ const Nav = styled.nav`
   display: flex;
 `;
 
+const NavLinks = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+interface NavLinkProps {
+  path: string;
+}
+
+const NavLink: React.SFC<NavLinkProps> = ({ path, children }) => (
+  <Link
+    to={path}
+    style={{
+      color: "white",
+      textDecoration: "none",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      marginLeft: "1.5rem",
+    }}
+  >
+    {children}
+  </Link>
+);
+
 const Header = () => {
   return (
     <Heading>
@@ -32,6 +57,11 @@ const Header = () => {
         >
           <Logo src={me} />
         </Link>
+        <NavLinks>
+          <NavLink path="/projects">Projects</NavLink>
+          <NavLink path="/blog">Blog</NavLink>
+          <NavLink path="/recipes">Recipes</NavLink>
+        </NavLinks>
       </Nav>
     </Heading>
   );
