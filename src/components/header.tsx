@@ -10,32 +10,30 @@ const Logo = styled.img`
   border-radius: 3rem;
 `;
 
+const Heading = styled.header`
+  background: rebeccapurple;
+  margin-bottom: 1.45rem;
+`;
+
+const Nav = styled.nav`
+  padding: 1rem;
+  display: flex;
+`;
+
 const Header = () => {
   return (
-    <header
-      style={{
-        background: `rebeccapurple`,
-        marginBottom: `1.45rem`,
-      }}
-    >
-      <div
-        style={{
-          padding: `1rem`,
-          display: "flex",
-        }}
-      >
+    <Heading>
+      <Nav>
         <Link
           to="/"
           style={{
-            color: `white`,
-            textDecoration: `none`,
             display: "flex",
           }}
         >
           <Logo src={me} />
         </Link>
-      </div>
-    </header>
+      </Nav>
+    </Heading>
   );
 };
 
