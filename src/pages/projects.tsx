@@ -5,12 +5,15 @@ import { styled } from "linaria/react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-const ProjectImage = styled.img`
+const ProjectImage = styled.div<{ src: string }>`
   height: 5rem;
+  background: ${props => `url(${props.src})`};
+  background-size: cover;
 `;
 
 const Project = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 150px 1fr;
 `;
 
 const Content = styled.div`
