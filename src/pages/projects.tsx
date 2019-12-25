@@ -5,11 +5,17 @@ import { styled } from "linaria/react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-const ProjectImage = styled.div<{ src: string }>`
+const ProjectThumbnail = styled.div<{ src: string }>`
   height: 5rem;
   background: ${props => `url(${props.src})`};
   background-size: cover;
 `;
+
+const ProjectImage = ({ src }) => (
+  <a target="_blank" href={src}>
+    <ProjectThumbnail src={src} />
+  </a>
+);
 
 const Project = styled.div`
   display: grid;
@@ -22,9 +28,19 @@ const Content = styled.div`
   margin-left: 1rem;
 `;
 
-const Title = styled.h2`
+const TitleHeading = styled.h2`
   text-align: center;
 `;
+
+const TitleLink = styled.a`
+  text-decoration: none;
+`;
+
+const Title = ({ url, children }) => (
+  <TitleLink href={url} target="_blank">
+    <TitleHeading>{children}</TitleHeading>
+  </TitleLink>
+);
 
 const ProjectsPage = ({
   data: {
@@ -33,7 +49,7 @@ const ProjectsPage = ({
 }) => {
   const Posts = edges.map(({ node: { id, frontmatter, html } }) => (
     <div key={id}>
-      <Title>{frontmatter.title}</Title>
+      <Title url={frontmatter.url}>{frontmatter.title}</Title>
       <Project>
         <ProjectImage src={frontmatter.image} />
         <Content>
@@ -61,6 +77,7 @@ export const pageQuery = graphql`
           id
           html
           frontmatter {
+            url
             title
             image
           }
