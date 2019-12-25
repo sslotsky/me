@@ -12,5 +12,6 @@ collections:
     create: true
     fields:
       - { name: title, label: Title }
+      - { name: url, label: URL }
       - { name: image, label: Image, widget: image }
       - { name: body, label: Body, widget: markdown }
