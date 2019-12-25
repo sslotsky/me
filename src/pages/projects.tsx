@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
-import ReactMarkdown from "react-markdown";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -29,13 +28,13 @@ const ProjectsPage = ({
     allMarkdownRemark: { edges },
   },
 }) => {
-  const Posts = edges.map(({ node: { id, frontmatter } }) => (
+  const Posts = edges.map(({ node: { id, frontmatter, html } }) => (
     <div key={id}>
       <Title>{frontmatter.title}</Title>
       <Project>
         <ProjectImage src={frontmatter.image} />
         <Content>
-          <ReactMarkdown source={frontmatter.description} />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
         </Content>
       </Project>
     </div>
@@ -57,10 +56,10 @@ export const pageQuery = graphql`
       edges {
         node {
           id
+          html
           frontmatter {
             title
             image
-            description
           }
         }
       }
