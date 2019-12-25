@@ -7,14 +7,13 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { HelmetProvider } from "react-helmet-async";
 
 import Header from "./header";
 import "./layout.css";
 
 const Layout = ({ children }) => {
   return (
-    <HelmetProvider>
+    <>
       <Header />
       <div
         style={{
@@ -31,7 +30,7 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
       </div>
-    </HelmetProvider>
+    </>
   );
 };
 
