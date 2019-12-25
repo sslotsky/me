@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
-import ReactMarkdown from "react-markdown";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -61,7 +60,6 @@ export const pageQuery = graphql`
           frontmatter {
             title
             image
-            description
           }
         }
       }
