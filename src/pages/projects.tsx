@@ -29,13 +29,13 @@ const ProjectsPage = ({
     allMarkdownRemark: { edges },
   },
 }) => {
-  const Posts = edges.map(({ node: { id, frontmatter } }) => (
+  const Posts = edges.map(({ node: { id, frontmatter, html } }) => (
     <div key={id}>
       <Title>{frontmatter.title}</Title>
       <Project>
         <ProjectImage src={frontmatter.image} />
         <Content>
-          <ReactMarkdown source={frontmatter.description} />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
         </Content>
       </Project>
     </div>
@@ -57,6 +57,7 @@ export const pageQuery = graphql`
       edges {
         node {
           id
+          html
           frontmatter {
             title
             image
