@@ -34,6 +34,7 @@ const SEO: React.SFC<SEOProps> = ({
             title
             description
             author
+            twitterHandle
           }
         }
       }
@@ -72,7 +73,7 @@ const SEO: React.SFC<SEOProps> = ({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: site.siteMetadata.twitterHandle,
         },
         {
           name: `twitter:title`,
