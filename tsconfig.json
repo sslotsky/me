@@ -3,9 +3,11 @@
     "target": "esnext",
     "module": "commonjs",
     "jsx": "react",
+    "allowJs": true,
     "declaration": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   }
 }

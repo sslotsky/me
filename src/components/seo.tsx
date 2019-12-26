@@ -9,19 +9,23 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { useStaticQuery, graphql } from "gatsby";
 
+type Meta =
+  | { name: string; content: any; property?: undefined }
+  | { property: string; content: any; name?: undefined };
+
 interface SEOProps {
   description?: string;
   lang?: string;
-  meta: object[];
+  meta?: Meta[];
   title: string;
 }
 
-function SEO({
+const SEO: React.SFC<SEOProps> = ({
   description = "",
   lang = "en",
   meta = [],
   title,
-}): React.ReactElement<SEOProps> {
+}) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -81,6 +85,6 @@ function SEO({
       ].concat(meta)}
     />
   );
-}
+};
 
 export default SEO;
