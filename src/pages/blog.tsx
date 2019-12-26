@@ -10,7 +10,7 @@ const TitleHeading = styled.h2`
   text-align: center;
 `;
 
-const Title = ({ path, children }) => (
+const Title: React.SFC<{ path: string }> = ({ path, children }) => (
   <Link
     to={path}
     style={{
@@ -36,7 +36,26 @@ const Container = styled.div`
   position: relative;
 `;
 
-const BlogIndex = ({
+interface Edge {
+  node: {
+    id: string;
+    excerpt: string;
+    frontmatter: {
+      title: string;
+      path: string;
+    };
+  };
+}
+
+interface BlogProps {
+  data: {
+    allMarkdownRemark: {
+      edges: Edge[];
+    };
+  };
+}
+
+const BlogIndex: React.SFC<BlogProps> = ({
   data: {
     allMarkdownRemark: { edges },
   },
@@ -70,7 +89,6 @@ export const pageQuery = graphql`
           id
           excerpt(pruneLength: 450)
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
             path
             title
           }

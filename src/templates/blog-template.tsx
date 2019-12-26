@@ -9,11 +9,22 @@ const Container = styled.div`
   padding: 3rem;
 `;
 
-export default function Template({
+interface TemplateProps {
+  data: {
+    markdownRemark: {
+      html: string;
+      frontmatter: {
+        title: string;
+      };
+    };
+  };
+}
+
+const Template: React.SFC<TemplateProps> = ({
   data: {
     markdownRemark: { frontmatter, html },
   },
-}) {
+}) => {
   return (
     <Layout>
       <SEO title={frontmatter.title} />
@@ -23,15 +34,13 @@ export default function Template({
       </Container>
     </Layout>
   );
-}
+};
 
 export const pageQuery = graphql`
   query($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        path
         title
       }
     }

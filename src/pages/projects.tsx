@@ -11,7 +11,7 @@ const ProjectThumbnail = styled.div<{ src: string }>`
   background-size: cover;
 `;
 
-const ProjectImage = ({ src }) => (
+const ProjectImage: React.SFC<{ src: string }> = ({ src }) => (
   <a target="_blank" href={src}>
     <ProjectThumbnail src={src} />
   </a>
@@ -36,13 +36,33 @@ const TitleLink = styled.a`
   text-decoration: none;
 `;
 
-const Title = ({ url, children }) => (
+const Title: React.SFC<{ url: string }> = ({ url, children }) => (
   <TitleLink href={url} target="_blank">
     <TitleHeading>{children}</TitleHeading>
   </TitleLink>
 );
 
-const ProjectsPage = ({
+interface Edge {
+  node: {
+    id: string;
+    html: string;
+    frontmatter: {
+      title: string;
+      url: string;
+      image: string;
+    };
+  };
+}
+
+interface ProjectProps {
+  data: {
+    allMarkdownRemark: {
+      edges: Edge[];
+    };
+  };
+}
+
+const ProjectsPage: React.SFC<ProjectProps> = ({
   data: {
     allMarkdownRemark: { edges },
   },
