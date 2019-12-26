@@ -3,16 +3,6 @@ import { styled } from "linaria/react";
 import { useStaticQuery, graphql } from "gatsby";
 import BackgroundImage from "gatsby-background-image";
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-
-const Haiku = styled.p`
-  font-style: italic;
-  text-indent: -1.5rem;
-  margin-left: 1.5rem;
-  color: white;
-`;
-
 const Background = styled(BackgroundImage)`
   height: 100vh;
   position: relative;
@@ -28,10 +18,15 @@ const Backdrop = styled.div`
   padding: 2rem;
 `;
 
-const NotFoundPage = () => {
+const Notice = styled.h2`
+  color: white;
+  text-align: center;
+`;
+
+const Construction = () => {
   const data = useStaticQuery(graphql`
     query {
-      placeholderImage: file(relativePath: { eq: "desolation.jpg" }) {
+      placeholderImage: file(relativePath: { eq: "construction.jpg" }) {
         childImageSharp {
           fluid(quality: 90, maxWidth: 1920) {
             ...GatsbyImageSharpFluid
@@ -40,21 +35,13 @@ const NotFoundPage = () => {
       }
     }
   `);
-
   return (
-    <Layout>
-      <SEO title="404: Not found" />
-      <Background fluid={data.placeholderImage.childImageSharp.fluid}>
-        <Backdrop>
-          <Haiku>
-            Wind catches lily
-            <br /> Scatt'ring petals to the wind:
-            <br /> Your site is not found.
-          </Haiku>
-        </Backdrop>
-      </Background>
-    </Layout>
+    <Background fluid={data.placeholderImage.childImageSharp.fluid}>
+      <Backdrop>
+        <Notice>This page is under construction</Notice>
+      </Backdrop>
+    </Background>
   );
 };
 
-export default NotFoundPage;
+export default Construction;

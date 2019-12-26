@@ -11,7 +11,7 @@ const Logo = styled.img`
 `;
 
 const Heading = styled.header`
-  background: rebeccapurple;
+  background: linear-gradient(45deg, hsl(35, 100%, 50%), hsl(50, 100%, 75%));
   margin-bottom: 1.45rem;
 `;
 
