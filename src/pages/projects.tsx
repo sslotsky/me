@@ -5,6 +5,11 @@ import { styled } from "linaria/react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
+const Container = styled.div`
+  margin-bottom: 2rem;
+  padding: 0 5rem;
+`;
+
 const ProjectThumbnail = styled.div<{ src: string }>`
   height: 5rem;
   background: ${props => `url(${props.src})`};
@@ -28,12 +33,15 @@ const Content = styled.div`
   margin-left: 1rem;
 `;
 
-const TitleHeading = styled.h2`
-  text-align: center;
-`;
+const TitleHeading = styled.h3``;
 
 const TitleLink = styled.a`
   text-decoration: none;
+  color: currentColor;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const Title: React.SFC<{ url: string }> = ({ url, children }) => (
@@ -68,7 +76,7 @@ const ProjectsPage: React.SFC<ProjectProps> = ({
   },
 }) => {
   const Posts = edges.map(({ node: { id, frontmatter, html } }) => (
-    <div key={id}>
+    <Container key={id}>
       <Title url={frontmatter.url}>{frontmatter.title}</Title>
       <Project>
         <ProjectImage src={frontmatter.image} />
@@ -76,7 +84,7 @@ const ProjectsPage: React.SFC<ProjectProps> = ({
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </Content>
       </Project>
-    </div>
+    </Container>
   ));
 
   return (

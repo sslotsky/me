@@ -6,17 +6,10 @@ import { Link } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-const TitleHeading = styled.h2`
-  text-align: center;
-`;
+const TitleHeading = styled.h3``;
 
 const Title: React.SFC<{ path: string }> = ({ path, children }) => (
-  <Link
-    to={path}
-    style={{
-      textDecoration: "none",
-    }}
-  >
+  <Link to={path}>
     <TitleHeading>{children}</TitleHeading>
   </Link>
 );
@@ -34,6 +27,16 @@ const Bottom = styled.div`
 
 const Container = styled.div`
   position: relative;
+  padding: 0 5rem;
+
+  a {
+    text-decoration: none;
+    color: currentColor;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 interface Edge {
