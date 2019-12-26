@@ -15,7 +15,6 @@ const Background = styled.div`
   background: url(../images/desolation.jpg);
   background-size: cover;
   height: 100vh;
-  border-radius: 0.5rem;
   position: relative;
 `;
 
