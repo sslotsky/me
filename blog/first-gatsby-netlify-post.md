@@ -21,6 +21,8 @@ For now, know this: whether you're using one of Gatsby's excellent themes to cre
 
 ### ♫ I've got no themes, to hold me down... ♫
 
+![pinocchio](/assets/pinocchio.png)
+
 I decided not to use a theme, so I ended up following the guides from the steps above, and I really didn't have to change much. The docs are quite good! But there were some minor differences, dots connected, and lessons learned as I went through the process, which is what I want to focus on in this post. So let's have a look inside my blog!
 
 ## Using NetlifyCMS
@@ -82,7 +84,11 @@ query {
 }
 ```
 
-That's because querying `allMarkdownRemark` without any filters is going to give me the entries from both of my collections! So I went to the GraphiQL explorer to see what my options were when making this query. It turned out that I could add a filter on the file path, which allowed me to specify a regular expression. This showed me the syntax I needed to form the query that I'm currently using on my blog index page:
+That's because querying `allMarkdownRemark` without any filters is going to give me the entries from both of my collections! So I went to the GraphiQL explorer to see what my options were when making this query.
+
+![graphiql](/assets/graphiql.png)
+
+It turned out that I could add a filter on the file path, which allowed me to specify a regular expression. This showed me the syntax I needed to form the query that I'm currently using on my blog index page:
 
 ```graphql
 query {
