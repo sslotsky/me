@@ -101,7 +101,7 @@ export const pageQuery = graphql`
   query {
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___title] }
-      filter: { fileAbsolutePath: { regex: "/projects/" } }
+      filter: { fileAbsolutePath: { regex: "/content/projects/" } }
     ) {
       edges {
         node {
