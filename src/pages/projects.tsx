@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
-import Img from "gatsby-image";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -43,12 +42,6 @@ const Container = styled.div`
   padding: 0 5rem;
 `;
 
-const ProjectImage: React.SFC<{ image: Image }> = ({ image }) => (
-  <a target="_blank" href={image.childImageSharp.fluid.src}>
-    <GatsbyImage fluid={image.childImageSharp.fluid} />
-  </a>
-);
-
 const Project = styled.div`
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -60,22 +53,14 @@ const Content = styled.div`
   margin-left: 1rem;
 `;
 
-const TitleHeading = styled.h3``;
-
-const TitleLink = styled.a`
+const ProjectLink = styled.a`
   text-decoration: none;
   color: currentColor;
 
-  &:hover {
+  &:hover h3 {
     text-decoration: underline;
   }
 `;
-
-const Title: React.SFC<{ url: string }> = ({ url, children }) => (
-  <TitleLink href={url} target="_blank">
-    <TitleHeading>{children}</TitleHeading>
-  </TitleLink>
-);
 
 const ProjectsPage: React.SFC<ProjectProps> = ({
   data: {
@@ -84,13 +69,15 @@ const ProjectsPage: React.SFC<ProjectProps> = ({
 }) => {
   const Posts = edges.map(({ node: { id, frontmatter, html } }) => (
     <Container key={id}>
-      <Title url={frontmatter.url}>{frontmatter.title}</Title>
-      <Project>
-        <ProjectImage image={frontmatter.image} />
-        <Content>
-          <div dangerouslySetInnerHTML={{ __html: html }} />
-        </Content>
-      </Project>
+      <ProjectLink target="_blank" href={frontmatter.url}>
+        <h3>{frontmatter.title}</h3>
+        <Project>
+          <GatsbyImage fluid={frontmatter.image.childImageSharp.fluid} />
+          <Content>
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+          </Content>
+        </Project>
+      </ProjectLink>
     </Container>
   ));
 
