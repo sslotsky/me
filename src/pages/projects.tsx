@@ -1,24 +1,51 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
+import Img from "gatsby-image";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import GatsbyImage from "gatsby-image";
+
+interface Image {
+  childImageSharp: {
+    fluid: {
+      aspectRatio: number;
+      src: string;
+      srcSet: string;
+      sizes: string;
+    };
+  };
+}
+
+interface Edge {
+  node: {
+    id: string;
+    html: string;
+    frontmatter: {
+      title: string;
+      url: string;
+      image: Image;
+    };
+  };
+}
+
+interface ProjectProps {
+  data: {
+    allMarkdownRemark: {
+      edges: Edge[];
+    };
+  };
+}
 
 const Container = styled.div`
   margin-bottom: 2rem;
   padding: 0 5rem;
 `;
 
-const ProjectThumbnail = styled.div<{ src: string }>`
-  height: 5rem;
-  background: ${props => `url(${props.src})`};
-  background-size: cover;
-`;
-
-const ProjectImage: React.SFC<{ src: string }> = ({ src }) => (
-  <a target="_blank" href={src}>
-    <ProjectThumbnail src={src} />
+const ProjectImage: React.SFC<{ image: Image }> = ({ image }) => (
+  <a target="_blank" href={image.childImageSharp.fluid.src}>
+    <GatsbyImage fluid={image.childImageSharp.fluid} />
   </a>
 );
 
@@ -50,26 +77,6 @@ const Title: React.SFC<{ url: string }> = ({ url, children }) => (
   </TitleLink>
 );
 
-interface Edge {
-  node: {
-    id: string;
-    html: string;
-    frontmatter: {
-      title: string;
-      url: string;
-      image: string;
-    };
-  };
-}
-
-interface ProjectProps {
-  data: {
-    allMarkdownRemark: {
-      edges: Edge[];
-    };
-  };
-}
-
 const ProjectsPage: React.SFC<ProjectProps> = ({
   data: {
     allMarkdownRemark: { edges },
@@ -79,7 +86,7 @@ const ProjectsPage: React.SFC<ProjectProps> = ({
     <Container key={id}>
       <Title url={frontmatter.url}>{frontmatter.title}</Title>
       <Project>
-        <ProjectImage src={frontmatter.image} />
+        <ProjectImage image={frontmatter.image} />
         <Content>
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </Content>
@@ -110,7 +117,13 @@ export const pageQuery = graphql`
           frontmatter {
             url
             title
-            image
+            image {
+              childImageSharp {
+                fluid(quality: 90, maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid_noBase64
+                }
+              }
+            }
           }
         }
       }
