@@ -2,13 +2,13 @@ backend:
   name: github
   repo: sslotsky/me
 
-media_folder: static/assets
+media_folder: content/assets
 public_folder: assets
 
 collections:
   - name: projects
     label: Projects
-    folder: projects
+    folder: content/projects
     create: true
     fields:
       - { name: title, label: Title }

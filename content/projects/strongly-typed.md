@@ -1,6 +1,6 @@
 ---
 title: Strongly Typed
-image: /assets/strongly-typed.png
+image: ../assets/strongly-typed.png
 url: https://strongly-typed.saxyfool.dev
 ---
 

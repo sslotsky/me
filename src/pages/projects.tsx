@@ -4,51 +4,18 @@ import { styled } from "linaria/react";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import GatsbyImage from "gatsby-image";
 
-const Container = styled.div`
-  margin-bottom: 2rem;
-  padding: 0 5rem;
-`;
-
-const ProjectThumbnail = styled.div<{ src: string }>`
-  height: 5rem;
-  background: ${props => `url(${props.src})`};
-  background-size: cover;
-`;
-
-const ProjectImage: React.SFC<{ src: string }> = ({ src }) => (
-  <a target="_blank" href={src}>
-    <ProjectThumbnail src={src} />
-  </a>
-);
-
-const Project = styled.div`
-  display: grid;
-  grid-template-columns: 150px 1fr;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 1rem;
-`;
-
-const TitleHeading = styled.h3``;
-
-const TitleLink = styled.a`
-  text-decoration: none;
-  color: currentColor;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const Title: React.SFC<{ url: string }> = ({ url, children }) => (
-  <TitleLink href={url} target="_blank">
-    <TitleHeading>{children}</TitleHeading>
-  </TitleLink>
-);
+interface Image {
+  childImageSharp: {
+    fluid: {
+      aspectRatio: number;
+      src: string;
+      srcSet: string;
+      sizes: string;
+    };
+  };
+}
 
 interface Edge {
   node: {
@@ -57,7 +24,7 @@ interface Edge {
     frontmatter: {
       title: string;
       url: string;
-      image: string;
+      image: Image;
     };
   };
 }
@@ -70,6 +37,31 @@ interface ProjectProps {
   };
 }
 
+const Container = styled.div`
+  margin-bottom: 2rem;
+  padding: 0 5rem;
+`;
+
+const Project = styled.div`
+  display: grid;
+  grid-template-columns: 150px 1fr;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+`;
+
+const ProjectLink = styled.a`
+  text-decoration: none;
+  color: currentColor;
+
+  &:hover h3 {
+    text-decoration: underline;
+  }
+`;
+
 const ProjectsPage: React.SFC<ProjectProps> = ({
   data: {
     allMarkdownRemark: { edges },
@@ -77,13 +69,15 @@ const ProjectsPage: React.SFC<ProjectProps> = ({
 }) => {
   const Posts = edges.map(({ node: { id, frontmatter, html } }) => (
     <Container key={id}>
-      <Title url={frontmatter.url}>{frontmatter.title}</Title>
-      <Project>
-        <ProjectImage src={frontmatter.image} />
-        <Content>
-          <div dangerouslySetInnerHTML={{ __html: html }} />
-        </Content>
-      </Project>
+      <ProjectLink target="_blank" href={frontmatter.url}>
+        <h3>{frontmatter.title}</h3>
+        <Project>
+          <GatsbyImage fluid={frontmatter.image.childImageSharp.fluid} />
+          <Content>
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+          </Content>
+        </Project>
+      </ProjectLink>
     </Container>
   ));
 
@@ -101,7 +95,7 @@ export const pageQuery = graphql`
   query {
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___title] }
-      filter: { fileAbsolutePath: { regex: "/projects/" } }
+      filter: { fileAbsolutePath: { regex: "/content/projects/" } }
     ) {
       edges {
         node {
@@ -110,7 +104,13 @@ export const pageQuery = graphql`
           frontmatter {
             url
             title
-            image
+            image {
+              childImageSharp {
+                fluid(quality: 90, maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid_noBase64
+                }
+              }
+            }
           }
         }
       }

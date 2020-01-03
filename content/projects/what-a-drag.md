@@ -1,6 +1,6 @@
 ---
 title: What a Drag
-image: /assets/what-a-drag.png
+image: ../assets/what-a-drag.png
 url: https://what-a-drag.saxyfool.dev
 ---
 

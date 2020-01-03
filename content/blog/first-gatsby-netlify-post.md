@@ -5,6 +5,7 @@ title: "Your first blog post with Gatsby and NetlifyCMS"
 ---
 
 Today is Christmas, and I'm Jewish. For me, this means I'm likely to use my day off to accomplish something that I've been putting off for a long time. And this year, I'm turning that into a Christmas gift for you all! You see, I've been seriously procastinating on a couple things: 1. putting together a personal site that includes a blog, and 2. building something with Gatsby.
+
 Well, I'm pleased to inform you that Gatsby and NetlifyCMS made my life pretty easy here, but nonetheless, I learned some things that I think are worth sharing. And since it's customary for a developer's first personal blog post to focus on the process of building their blog, today I'm going to use my first blog post to show you how you can create yours!
 
 ## How a static blog is built
@@ -21,7 +22,7 @@ For now, know this: whether you're using one of Gatsby's excellent themes to cre
 
 ### ♫ I've got no themes, to hold me down... ♫
 
-![pinocchio](/assets/pinocchio.png)
+![pinocchio](../assets/pinocchio.png)
 
 I decided not to use a theme, so I ended up following the guides from the steps above, and I really didn't have to change much. The docs are quite good! But there were some minor differences, dots connected, and lessons learned as I went through the process, which is what I want to focus on in this post. So let's have a look inside my blog!
 
@@ -86,7 +87,7 @@ query {
 
 That's because querying `allMarkdownRemark` without any filters is going to give me the entries from both of my collections! So I went to the GraphiQL explorer to see what my options were when making this query.
 
-![graphiql](/assets/graphiql.png)
+![graphiql](../assets/graphiql.png)
 
 It turned out that I could add a filter on the file path, which allowed me to specify a regular expression. This showed me the syntax I needed to form the query that I'm currently using on my blog index page:
 
