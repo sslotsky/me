@@ -1,6 +1,7 @@
 backend:
-  name: github
-  repo: sslotsky/me
+  #name: github # this should be uncommented in production
+  #repo: sslotsky/me
+  name: test-repo #added this to test locally with netlify cms(in prod this should not exist)
 
 media_folder: static/assets
 public_folder: assets
@@ -8,7 +9,7 @@ public_folder: assets
 collections:
   - name: projects
     label: Projects
-    folder: projects
+    folder: /content/projects # adjusted the folder to match config. Should any more items need to be added this config should be updated
     create: true
     fields:
       - { name: title, label: Title }

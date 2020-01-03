@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
-
+import Img from 'gatsby-image'
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
@@ -16,11 +16,11 @@ const ProjectThumbnail = styled.div<{ src: string }>`
   background-size: cover;
 `;
 
-const ProjectImage: React.SFC<{ src: string }> = ({ src }) => (
-  <a target="_blank" href={src}>
-    <ProjectThumbnail src={src} />
+const ProjectImage: React.SFC<{ url:string,src: any }> = ({ url,src }) => (
+  <a target="_blank" href={url}>
+      <Img fluid={src}/>
   </a>
-);
+)
 
 const Project = styled.div`
   display: grid;
@@ -57,7 +57,16 @@ interface Edge {
     frontmatter: {
       title: string;
       url: string;
-      image: string;
+      image: {
+        childImageSharp:{
+          fluid:{
+            aspectRatio:number,
+            src:string,
+            srcSet:string,
+            sizes:string
+          }
+        }
+      };
     };
   };
 }
@@ -79,7 +88,9 @@ const ProjectsPage: React.SFC<ProjectProps> = ({
     <Container key={id}>
       <Title url={frontmatter.url}>{frontmatter.title}</Title>
       <Project>
-        <ProjectImage src={frontmatter.image} />
+        <ProjectImage src={frontmatter.image.childImageSharp.fluid} url={frontmatter.url} />
+        {/* <Img fluid={frontmatter.image.childImageSharp.fluid} /> */}
+        
         <Content>
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </Content>
@@ -96,7 +107,7 @@ const ProjectsPage: React.SFC<ProjectProps> = ({
 };
 
 export default ProjectsPage;
-
+/* 
 export const pageQuery = graphql`
   query {
     allMarkdownRemark(
@@ -116,4 +127,34 @@ export const pageQuery = graphql`
       }
     }
   }
+`;
+ */
+
+ // updated query to grab the frontmatter key image as a File with gatsby-plugin-sharp and gatsby-transformer-sharp
+ // as with the proposed change to the location of the assets, the frontmatter element image will be a implemented as a File Node, not a string 
+export const pageQuery = graphql`
+query {
+  allMarkdownRemark(
+    sort: { order: DESC, fields: [frontmatter___title] }
+    filter: { fileAbsolutePath: { regex: "/projects/" } }
+  ) {
+    edges {
+      node {
+        id
+        html
+        frontmatter {
+          url
+          title
+          image{
+            childImageSharp {
+              fluid(quality: 90, maxWidth: 1920) {
+                ...GatsbyImageSharpFluid_noBase64
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 `;
