@@ -69,11 +69,23 @@ const SEO: React.SFC<SEOProps> = ({
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
+        },
+        {
+          name: `twitter:site`,
+          content: site.siteMetadata.twitterHandle,
         },
         {
           name: `twitter:creator`,
           content: site.siteMetadata.twitterHandle,
+        },
+        {
+          name: `twitter:image`,
+          content: "https://saxyfool.dev/sam-and-jim.jpg",
+        },
+        {
+          name: `twitter:image:alt`,
+          content: "Me and my cat, Jim",
         },
         {
           name: `twitter:title`,

@@ -27,7 +27,10 @@ const Template: React.SFC<TemplateProps> = ({
 }) => {
   return (
     <Layout>
-      <SEO title={frontmatter.title} />
+      <SEO
+        title={frontmatter.title}
+        description="Sam Slotsky's personal blog"
+      />
       <Container>
         <h1>{frontmatter.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: html }} />
