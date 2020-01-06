@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4f286524-379d-4683-8949-90a03b01b39f/deploy-status)](https://app.netlify.com/sites/gifted-newton-ed8040/deploys)
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
