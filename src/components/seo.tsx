@@ -81,7 +81,7 @@ const SEO: React.SFC<SEOProps> = ({
         },
         {
           name: `twitter:image`,
-          content: "https://saxyfool.dev/sam-and-jim.jpg",
+          content: "https://saxyfool.dev/things-and-stuff.jpg",
         },
         {
           name: `twitter:image:alt`,
