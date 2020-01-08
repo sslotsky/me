@@ -4,7 +4,7 @@ module.exports = {
     description: `My personal website`,
     author: `Sam Slotsky`,
     twitterHandle: `@sawtoothsamo`,
-    siteUrl: "https://saxyfool.dev",
+    siteUrl: "https://saxyfool.dev/blog",
   },
   plugins: [
     `gatsby-plugin-feed`,
