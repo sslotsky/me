@@ -4,8 +4,10 @@ module.exports = {
     description: `My personal website`,
     author: `Sam Slotsky`,
     twitterHandle: `@sawtoothsamo`,
+    siteUrl: "https://saxyfool.dev",
   },
   plugins: [
+    `gatsby-plugin-feed`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-linaria`,
     `gatsby-transformer-sharp`,
