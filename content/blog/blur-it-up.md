@@ -1,5 +1,5 @@
 ---
-slut: "blur-it-up"
+slug: "blur-it-up"
 date: "2020-01-04"
 title: "Implementing the blur-up effect for inline images in your Gatsby blog"
 ---
