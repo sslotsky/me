@@ -1,5 +1,5 @@
 ---
-path: "/blog/your-first-blog-post-with-gatsby-and-netlify-cms"
+slug: "your-first-blog-post-with-gatsby-and-netlify-cms"
 date: "2019-12-25"
 title: "Your first blog post with Gatsby and NetlifyCMS"
 ---
