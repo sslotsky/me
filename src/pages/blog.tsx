@@ -8,8 +8,8 @@ import SEO from "../components/seo";
 
 const TitleHeading = styled.h3``;
 
-const Title: React.SFC<{ path: string }> = ({ path, children }) => (
-  <Link to={path}>
+const Title: React.SFC<{ slug: string }> = ({ slug, children }) => (
+  <Link to={`/blog/${slug}`}>
     <TitleHeading>{children}</TitleHeading>
   </Link>
 );
@@ -45,7 +45,7 @@ interface Edge {
     excerpt: string;
     frontmatter: {
       title: string;
-      path: string;
+      slug: string;
     };
   };
 }
@@ -65,7 +65,7 @@ const BlogIndex: React.SFC<BlogProps> = ({
 }) => {
   const Posts = edges.map(({ node: { id, frontmatter, excerpt } }) => (
     <Container key={id}>
-      <Title path={frontmatter.path}>{frontmatter.title}</Title>
+      <Title slug={frontmatter.slug}>{frontmatter.title}</Title>
       <p dangerouslySetInnerHTML={{ __html: excerpt }} />
       <Bottom />
     </Container>
@@ -92,7 +92,7 @@ export const pageQuery = graphql`
           id
           excerpt(pruneLength: 450)
           frontmatter {
-            path
+            slug
             title
           }
         }
