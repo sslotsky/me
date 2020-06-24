@@ -60,6 +60,7 @@ const Header = () => {
         <NavLinks>
           <NavLink path="/projects">Projects</NavLink>
           <NavLink path="/blog">Blog</NavLink>
+          <NavLink path="/recipes">Recipes</NavLink>          
         </NavLinks>
       </Nav>
     </Heading>
