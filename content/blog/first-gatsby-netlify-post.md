@@ -4,6 +4,8 @@ date: "2019-12-25"
 title: "Your first blog post with Gatsby and NetlifyCMS"
 ---
 
+**Just a test**
+
 Today is Christmas, and I'm Jewish. For me, this means I'm likely to use my day off to accomplish something that I've been putting off for a long time. And this year, I'm turning that into a Christmas gift for you all! You see, I've been seriously procastinating on a couple things: 1. putting together a personal site that includes a blog, and 2. building something with Gatsby.
 
 Well, I'm pleased to inform you that Gatsby and NetlifyCMS made my life pretty easy here, but nonetheless, I learned some things that I think are worth sharing. And since it's customary for a developer's first personal blog post to focus on the process of building their blog, today I'm going to use my first blog post to show you how you can create yours!
