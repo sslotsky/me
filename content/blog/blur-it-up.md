@@ -4,6 +4,8 @@ date: "2020-01-04"
 title: "Implementing the blur-up effect for inline images in your Gatsby blog"
 ---
 
+Down on maaiiinn streeeet
+
 ![timelapse](../assets/blur.jpg)
 
 That image ☝️ has nothing to do with this post, but did you see it _blur up_? It started as a low resolution blur and then came into focus to reveal a high resolution stock photo. Pretty cool, right? This is a popular technique often seen in well known blogs like Medium. If you've ever wondered what's happening there, or if you already know the gist but want to know how to implement it on a Gatsby site, then this post is for you!
